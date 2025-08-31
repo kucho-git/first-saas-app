@@ -5,7 +5,7 @@ from visits.models import PageVisit
 
 def home_page_view(request, *args, **kwargs):
     queryvisit = PageVisit.objects.all()
-    my_title = "mere homme pagr"
+    my_title = "mere homme page"
     my_context = {
         "page_title": my_title,
         "page_visit_count": queryvisit.count()
