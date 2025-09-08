@@ -43,10 +43,10 @@ COPY ./src /code
 # Install the Python project requirements
 RUN pip install -r /tmp/requirements.txt
 
-ARG DDJANGO_SECRET_KEY
+ARG DJANGO_SECRET_KEY
 ENV DJANGO_SECRET_KEY = ${DJANGO_SECRET_KEY}
 
-ARG DJANGO_DEBUG=0
+ARG DJANGO_DEBUG=False
 ENV DJANGO_DEBUG = ${DJANGO_DEBUG}
 
 # database isn't available during build
