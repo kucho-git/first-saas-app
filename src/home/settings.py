@@ -28,8 +28,6 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == "true"
 DEBUG = config("DJANGO_DEBUG", cast = bool)
 
-print(f"DEBUG: {DEBUG}, {type(DEBUG)}") # Just to see the debug mode
-
 ALLOWED_HOSTS = [
     ".railway.app" # https://saas.prod.railway.app
 ]
@@ -52,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my-apps
     "visits",
+    "commando",
 ]
 
 MIDDLEWARE = [
@@ -94,7 +93,7 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = config("DATABASE_URL", cast = str)
+DATABASE_URL = config("DATABASE_URL", default=None)
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast = int, default = 30)
 
 if DATABASE_URL is not None:
@@ -143,6 +142,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_BASE_DIR.mkdir(exist_ok=True, parents=True)
 STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
 
 # source(s) for python manage.py collectstatics
